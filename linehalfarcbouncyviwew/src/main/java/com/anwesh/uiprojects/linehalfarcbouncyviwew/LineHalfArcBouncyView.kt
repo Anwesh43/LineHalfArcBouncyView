@@ -184,4 +184,26 @@ class LineHalfArcBouncyView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineHalfArcBouncyView) {
+
+        private val lha : LineHalfArc = LineHalfArc(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            lha.draw(canvas, paint)
+            animator.animate {
+                lha.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lha.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
