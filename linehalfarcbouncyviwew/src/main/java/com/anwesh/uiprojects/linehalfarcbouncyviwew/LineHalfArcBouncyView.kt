@@ -10,6 +10,7 @@ import android.content.Context
 import android.app.Activity
 import android.graphics.Paint
 import android.graphics.Canvas
+import android.graphics.RectF
 import android.graphics.Color
 
 val nodes : Int = 5
@@ -31,6 +32,10 @@ fun Canvas.drawLineHalfArc(i : Int, scale : Float, size : Float, h : Float, pain
     save()
     scale(1f, 1f - 2 * i)
     drawLine(0f, h , 0f, h + (size - h) * sf, paint)
+    save()
+    translate(0f, (h - size) - (h - size) * sf)
+    drawArc(RectF(-size, -size, size, size), 0f, 180f, true, paint)
+    restore()
     restore()
 }
 
