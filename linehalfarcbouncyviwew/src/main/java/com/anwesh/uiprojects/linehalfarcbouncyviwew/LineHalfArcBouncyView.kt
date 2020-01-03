@@ -207,4 +207,13 @@ class LineHalfArcBouncyView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineHalfArcBouncyView {
+            val view : LineHalfArcBouncyView = LineHalfArcBouncyView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
